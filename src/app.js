@@ -19,6 +19,10 @@ app.use(morgan(morganOption))
 app.use(cors())
 app.use(helmet())
 
+// app.get(`/`, (req, res) => {
+//   res.status(200).res.send('Success!')
+// })
+
 app.use(`/api/recipes`, recipeRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/users', usersRouter)

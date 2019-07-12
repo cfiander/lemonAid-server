@@ -1,7 +1,7 @@
 module.exports = {
   PORT: process.env.PORT || 8000,
   NODE_ENV: process.env.NODE_ENV || 'development',
-  DB_URL: process.env.DB_URL || 'postgresql://lemonstand@localhost/lemonstand',
+  DB_URL: process.env.DATABASE_URL || 'postgresql://dunder-mifflin@localhost/blogful',
   JWT_SECRET: process.env.JWT_SECRET || 'my-new-secret',
   JWT_EXPIRY: process.env.JWT_EXPIRY || '3h',
 }

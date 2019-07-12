@@ -1,35 +1,20 @@
 const knex = require('knex')
 const app = require('../src/app')
-const {testUsers} = require('./test-helpers')
 
 describe('Recipes Endpoints', function() {
 
-  before('make knex instance', () => {
-    db = knex({
-      client: 'pg',
-      connection: process.env.TEST_DB_URL,
-    })
-    app.set('db', db)
-  })
-
-  after('disconnect from db', () => db.destroy())
-
-  before('cleanup', () => helpers.cleanTables(db))
-
-  afterEach('cleanup', () => helpers.cleanTables(db))
-
-  describe(`GET /api/recipes`, () => {
+  describe.only(`GET /api/recipes`, () => {
     context(`Given no recipes`, () => {
       it(`responds with 200 and an empty list`, () => {
         return supertest(app)
-          .get('/api/recipes')
+          .post('/api/recipes')
           .expect(200, [])
       })
     })
 
     context('Given there are recipes', () => {
         it('responds with 200 and all of the things', () => {
-        app.get((req, res, next) => {
+        app.post((req, res, next) => {
             // const { number, ranking, ignorePantry = null, ingredients = [] } = req.query;
             const {ingredients} = [apples, sugar, flour]
             const ingredientsString = ingredients.join('2%C')
@@ -42,8 +27,8 @@ describe('Recipes Endpoints', function() {
             expect(testRecipes).to.deep.equal(expectedRecipes)
           })
           return supertest(app)
-          .get('/api/recipes')
-          .expect(200, expectedThings)
+          .post('/api/recipes')
+          .expect(200, expectedRecipes)
         })
         })
     })
