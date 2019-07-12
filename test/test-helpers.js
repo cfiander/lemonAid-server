@@ -210,7 +210,7 @@ function makeMaliciousThing(user) {
   }
 }
 
-function makeThingsFixtures() {
+function makeFixtures() {
   const testUsers = makeUsersArray()
 //   const testThings = makeThingsArray(testUsers)
 //   const testReviews = makeReviewsArray(testUsers, testThings)
@@ -289,13 +289,8 @@ function makeAuthHeader(user, secret = process.env.JWT_SECRET) {
 
 module.exports = {
   makeUsersArray,
-  makeThingsArray,
-  makeExpectedThing,
-  makeExpectedThingReviews,
-  makeMaliciousThing,
-  makeReviewsArray,
 
-  makeThingsFixtures,
+  makeFixtures,
   cleanTables,
   seedThingsTables,
   seedMaliciousThing,
