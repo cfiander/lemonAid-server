@@ -3,7 +3,6 @@ const RecipeService = require('./Recipes-Service')
 const recipeRouter = express.Router()
 const unirest = require ('unirest')
 const config = require('../config')
-
 const jsonBodyParser = express.json()
 
 recipeRouter
@@ -16,6 +15,7 @@ recipeRouter
     .header("X-RapidAPI-Host", "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com")
     .header("X-RapidAPI-Key", `${config.API_TOKEN}`)
     .end(function (result) {
+        console.log(result.body)
     res.status(200).send(result.body);
   })
   })
