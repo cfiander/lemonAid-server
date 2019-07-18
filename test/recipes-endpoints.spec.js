@@ -6,7 +6,7 @@ describe('Recipes Endpoints', function() {
 
     const {expectedRecipes} = helpers.makeFixtures()
 
-  describe.only(`Getting recipes from /api/recipes`, () => {
+  describe(`Getting recipes from /api/recipes`, () => {
     context(`Given no recipes`, () => {
       it(`responds with 200 and an empty list`, () => {
         return supertest(app)
@@ -35,4 +35,6 @@ describe('Recipes Endpoints', function() {
         })
     })
   })
+  describe(`Getting url from recipes at /api/recipes/url`, () => {
+})
 })
