@@ -124,31 +124,6 @@ function seedUsers(db, users) {
 }
 
 
-function seedThingsTables(db, users, recipes, reviews=[]) {
-  return db.transaction(async trx => {
-    await seedUsers(trx, users)
-    await trx.into('saved_recipes').insert(recipes)
-  
-    await trx.raw(`SELECT setval('saved_recipes_id_seq',?)`,
-    [recipes[recipes.length -1].id])
-  })
-  .then(()=>
-  reviews.length && db('user_recipes').insert(reviews)
-  )
-}
-
-
-
-function seedMaliciousThing(db, user, recipe) {
-  return seedUsers(db, [user])
-    .then(() =>
-      db
-        .into('user_recipes')
-        .insert([recipe])
-    )
-}
-
-
 function makeAuthHeader(user, secret = process.env.JWT_SECRET) {
   const token = jwt.sign({ user_id: user.id }, secret, {
     subject: user.user_name,
@@ -159,11 +134,8 @@ function makeAuthHeader(user, secret = process.env.JWT_SECRET) {
 
 module.exports = {
   makeUsersArray,
-
   makeFixtures,
   cleanTables,
-  seedThingsTables,
-  seedMaliciousThing,
   makeAuthHeader,
   seedUsers,
 }
