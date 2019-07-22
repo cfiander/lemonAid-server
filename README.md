@@ -53,6 +53,26 @@ https://github.com/cfiander/lemonAid-client
 
 ## Screenshots
 
+
+POST /api/recipes 
+
+1. Doesn't require Authentication 
+2. Feeds an external API an ingredients list from the req.body and returns up to 50 results from external API
+
+POST /api/recipes/url
+
+1. Doesn't require Authentication 
+2. Feeds a given recipe ID specific to each recipe in the external API and returns a specific URL for a given recipe which is embedded into the recipe on the results page 
+
+
+POST /api/auth/login 
+
+1. Handles login requests for registered users. 
+
+POST /api/users
+
+2. Handles registration for new uers.
+
 ## Built With 
 
 Express
