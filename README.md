@@ -1,6 +1,5 @@
-# Express Boilerplate!
+# LemonAid Server
 
-This is a boilerplate project used for starting new projects!
 
 ## Set up
 
@@ -11,7 +10,56 @@ Complete the following steps to start a new project (NEW-PROJECT-NAME):
 3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
 4. Install the node dependencies `npm install`
 5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
+6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "lemonaid-server",`
+
+7. Create a new database called "lemonstand" and its corresponding undo
+8. Create a table for users 
+  CREATE TABLE lemonstand_users (
+  id SERIAL PRIMARY KEY,
+  user_name TEXT NOT NULL UNIQUE,
+  full_name TEXT NOT NULL,
+  password TEXT NOT NULL,
+  date_created TIMESTAMP NOT NULL DEFAULT now(),
+  date_modified TIMESTAMP
+  );
+  
+  DROP TABLE IF EXISTS lemonstand_users;
+
+9. Create a table for saved_recipes (recipes which have been saved by users) and its corresponding undo 
+  create table saved_recipes
+  (
+     recipe_id    integer primary key not null,
+     recipe_name  TEXT NOT NULL
+  );
+  
+  DROP TABLE IF EXISTS lemonstand_saved_recipes;
+
+10. Create a table for user_recipes (saved recipes for an individual users and its corresponding undo
+  create table user_recipes
+  (
+      id integer not null references lemonstand_users(id) ON DELETE CASCADE NOT NULL,
+      recipe_id   integer not null references saved_recipes(recipe_id) ON DELETE CASCADE NOT NULL
+  );
+  
+  DROP TABLE IF EXISTS user_recipes;
+  
+## Server Address 
+
+https://sheltered-temple-74358.herokuapp.com/api
+
+## React Front End
+
+https://github.com/cfiander/lemonAid-client
+
+## Screenshots
+
+## Built With 
+
+Express
+Node
+Bcrypt
+JsonWebToken
+Unirest
 
 ## Scripts
 
@@ -23,4 +71,4 @@ Run the tests `npm test`
 
 ## Deploying
 
-When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's master branch.
+Type heroku create into the command line and then 'npm run deploy'. A database in Heroku is also neccessary. 
