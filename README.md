@@ -51,7 +51,7 @@ https://sheltered-temple-74358.herokuapp.com/api
 
 https://github.com/cfiander/lemonAid-client
 
-## Screenshots
+## Routes
 
 
 POST /api/recipes 
