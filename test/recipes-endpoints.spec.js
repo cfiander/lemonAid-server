@@ -11,6 +11,7 @@ describe('Recipes Endpoints', function() {
       it(`responds with 200 and an empty list`, () => {
         return supertest(app)
           .post('/api/recipes')
+          .send({ingredients:"asdf"})
           .expect(200, [])
       })
     })

@@ -9,9 +9,9 @@ recipeRouter
   .route('/')
     .post(jsonBodyParser, (req, res, next) => {
     // const { number, ranking, ignorePantry = null, ingredients = [] } = req.query;
+    console.log(req.body)
     const {ingredients} = req.body
-   
-    unirest.get(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=50&ranking=0&ignorePantry=false&ingredients=${ingredients}`)
+    unirest.get(`https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=50&ranking=1s&ignorePantry=false&ingredients=${ingredients}`)
     .header("X-RapidAPI-Host", "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com")
     .header("X-RapidAPI-Key", `${config.API_TOKEN}`)
     .end(function (result) {
